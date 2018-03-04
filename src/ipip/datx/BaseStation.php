@@ -2,6 +2,13 @@
 
 namespace ipip\datx;
 
+/**
+ * IPIP datx code (https://www.ipip.net)
+ * 基站IP度
+ * 
+ * @ $datx = new ipip\datx\BaseStation("c:/work/tiantexin/17mon/station_ip.datx");
+ * @ var_dump($datx->find("27.128.80.57"));
+ */
 class BaseStation
 {
     private $file;
@@ -54,6 +61,3 @@ class BaseStation
         return explode("\t", fread($this->file, $len['len']));
     }
 }
-
-$datx = new BaseStation("c:/work/tiantexin/17mon/station_ip.datx");
-var_dump($datx->find("27.128.80.57"));
