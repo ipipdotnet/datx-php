@@ -18,6 +18,9 @@ class City
 
     private $index;
 
+    /**
+     * @param string $path is file path
+     */
     public function __construct($path)
     {
         if (!is_file($path))
@@ -36,6 +39,11 @@ class City
         $this->index = fread($this->file, $this->offset['len'] - 4);
     }
 
+    /**
+     * @param string $ip
+     * 
+     * @return bool|array
+     */
     public function find($ip)
     {
         if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) === FALSE)
