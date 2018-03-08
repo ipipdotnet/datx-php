@@ -1,0 +1,25 @@
+{
+    "name": "ipip/datx",
+    "type": "library",
+    "description": "",
+    "keywords": ["ipip.net","datx","geoip","geolocation", "geo","ip"],
+    "homepage": "https://www.ipip.net",
+    "license": "Apache License 2.0",
+    "authors": [
+        {
+            "name": "IPIP.net",
+            "email": "frk@ipip.net",
+            "homepage": "https://www.ipip.net"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ipip\\datx\\": "src/ipip/datx/"
+        }
+    },
+    "scripts": {
+    }
+}
