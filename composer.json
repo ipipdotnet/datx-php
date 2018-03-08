@@ -12,7 +12,9 @@
             "homepage": "https://www.ipip.net"
         }
     ],
-    "minimum-stability":"stable",
+    "require": {
+        "php": ">=5.4.0"
+    },    
     "autoload": {
         "psr-4": {
             "ipip\\datx\\": "src/ipip/datx/"
