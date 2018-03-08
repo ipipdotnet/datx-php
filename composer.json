@@ -1,7 +1,7 @@
 {
     "name": "ipip/datx",
     "type": "library",
-    "description": "",
+    "description": "IPIP.net官方支持的IP数据库datx格式解析库",
     "keywords": ["ipip.net","datx","geoip","geolocation", "geo","ip"],
     "homepage": "https://www.ipip.net",
     "license": "Apache License 2.0",
