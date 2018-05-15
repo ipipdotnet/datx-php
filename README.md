@@ -9,7 +9,7 @@ IPIP.net官方支持的解析datx格式的php代码
 <code>
 require_once __DIR__ . '/vendor/autoload.php';
 
-$bs = new ipip\datx\City("/path/to/mydata4vipday4.datx");
+$bs = new ipip\datx\City("/path/to/mydata4vipday4.datx"); // 城市级数据库
 var_export($bs->find("223.220.233.0"));
 
 $bs = new ipip\datx\District("/path/to/quxian.datx");
