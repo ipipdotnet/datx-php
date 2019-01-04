@@ -36,7 +36,7 @@ class City
 
         $this->offset = unpack('Nlen', fread($this->file, 4));
 
-        $this->index = fread($this->file, $this->offset['len'] - 4);
+        //$this->index = fread($this->file, $this->offset['len'] - 4);
     }
 
     /**
@@ -57,7 +57,16 @@ class City
 
         $idx = (256 * $ips[0] + $ips[1]) * 4;
 
-        $start = unpack('Vlen', substr($this->index, $idx, 4));
+
+        /////////////////////////////////////////////
+        //$start = unpack('Vlen', substr($this->index, $idx, 4));
+
+        fseek($this->file, 4 + $idx); // offset 时 已经移动了4 字节，所以加4
+
+        $start = unpack('Vlen', fread($this->file, 4));
+
+        //print_r($start);exit;
+        ////////////////////////////////////////
 
         $off = NULL;
         $len = NULL;
@@ -66,11 +75,43 @@ class City
 
         for ($start = $start['len'] * 9 + 262144; $start < $max; $start += 9)
         {
-            $tmp = $this->index[$start] . $this->index[$start + 1] . $this->index[$start + 2] . $this->index[$start + 3];
+
+            ///////////////////////////////
+            //$tmp = $this->index[$start] . $this->index[$start + 1] . $this->index[$start + 2] . $this->index[$start + 3];
+            //$tmp = substr($this->index, $start, 4);
+
+            fseek($this->file, 4 + $start); // offset 时 已经移动了4 字节，所以加4
+
+            $tmp = fread($this->file, 4);
+
+            //print_r(strncmp($tmp, $tmp1, 10));exit;
+            ////////////////////////////
+
+
             if ($tmp >= $nip2)
             {
-                $off = unpack('Vlen', substr($this->index, $start + 4, 3) . "\x0");
-                $len = unpack('nlen', $this->index[$start + 7] . $this->index[$start + 8]);
+                ///////////////////////
+                //$off = unpack('Vlen', substr($this->index, $start + 4, 3) . "\x0");
+
+                fseek($this->file, 4 + $start + 4); // offset 时 已经移动了4 字节，所以加4
+
+                $off = unpack('Vlen', fread($this->file, 3) . "\x0");
+
+                //print_r($off);exit;
+                ////////////////////////
+
+
+
+                /////////////////////////
+                //$len = unpack('nlen', $this->index[$start + 7] . $this->index[$start + 8]);
+                //$len = unpack('nlen', substr($this->index, $start + 7, 2));
+
+                fseek($this->file, 4 + $start + 7); // offset 时 已经移动了4 字节，所以加4
+
+                $len = unpack('nlen', fread($this->file, 2));
+
+                //print_r($len);exit;
+                /////////////////////////
                 break;
             }
         }
